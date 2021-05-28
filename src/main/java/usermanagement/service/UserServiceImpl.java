@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	//@Override
+	// not tested
 	public User findById_old(Integer personId) {
 		Person found = personDao.findOne(personId);
 
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	// not tested
 	@Override
 	public User save(User user) {
 		Person saved = personDao.save(transformer.toUserEntity(user));
