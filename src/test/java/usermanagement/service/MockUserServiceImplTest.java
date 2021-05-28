@@ -90,7 +90,24 @@ public class MockUserServiceImplTest {
 		testClass.deleteById(Integer.valueOf(1));
 
 		verify(personDao, times(1)).delete(Integer.valueOf(1));
-		;
+	}
+
+	@Test
+	public void findById_old_found() {
+		doReturn(person).when(personDao).findOne(1);
+		doReturn(user).when(transformer).toUserDomain(person);
+
+		User user = testClass.findById_old(1);
+		assertEquals(ALI, user.getFirstName());
+	}
+
+	@Test
+	public void findById_old_not_found() {
+		try {
+			testClass.findById_old(100);
+		} catch (UserNotFoundException e) {
+			assertEquals(e.getMessage(), "not found user");
+		}
 	}
 
 	@Before
